@@ -17,8 +17,6 @@
 package com.optimaize.langdetect.text;
 
 import com.google.common.collect.ImmutableList;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -29,13 +27,12 @@ import java.util.List;
  */
 public class MultiTextFilter implements TextFilter {
 
-    @Nullable
     private final List<TextFilter> filters;
 
     /**
      * @param filters may be empty by definition
      */
-    public MultiTextFilter(@NotNull List<TextFilter> filters) {
+    public MultiTextFilter(List<TextFilter> filters) {
         if (filters.isEmpty()) {
             this.filters = null;
         } else {

@@ -20,8 +20,6 @@ import com.google.common.base.Optional;
 import com.optimaize.langdetect.i18n.LdLocale;
 import com.optimaize.langdetect.ngram.NgramExtractor;
 import com.optimaize.langdetect.profiles.LanguageProfile;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -39,7 +37,6 @@ public class LanguageDetectorBuilder {
 
     private static final double ALPHA_DEFAULT = 0.5;
 
-    @NotNull
     private final NgramExtractor ngramExtractor;
 
     private double alpha = ALPHA_DEFAULT;
@@ -51,19 +48,16 @@ public class LanguageDetectorBuilder {
     private double probabilityThreshold = 0.1;
     private double minimalConfidence = 0.9999d;
 
-    @Nullable
     private Map<LdLocale, Double> langWeightingMap;
 
-    @NotNull
     private final Set<LanguageProfile> languageProfiles = new HashSet<>();
-    @NotNull
     private final Set<LdLocale> langsAdded = new HashSet<>();
 
-    public static LanguageDetectorBuilder create(@NotNull NgramExtractor ngramExtractor) {
+    public static LanguageDetectorBuilder create(NgramExtractor ngramExtractor) {
         return new LanguageDetectorBuilder(ngramExtractor);
     }
 
-    private LanguageDetectorBuilder(@NotNull NgramExtractor ngramExtractor) {
+    private LanguageDetectorBuilder(NgramExtractor ngramExtractor) {
         this.ngramExtractor = ngramExtractor;
     }
 
@@ -77,7 +71,7 @@ public class LanguageDetectorBuilder {
     public LanguageDetectorBuilder seed(long seed) {
         return seed(Optional.of(seed));
     }
-    public LanguageDetectorBuilder seed(@NotNull Optional<Long> seed) {
+    public LanguageDetectorBuilder seed(Optional<Long> seed) {
         this.seed = seed;
         return this;
     }
@@ -149,7 +143,7 @@ public class LanguageDetectorBuilder {
      * Maybe check for unsupported languages at some point, or not, but document whether it does throw or ignore.
      * String key = language, Double value = priority (probably 0-1).
      */
-    public LanguageDetectorBuilder languagePriorities(@Nullable Map<LdLocale, Double> langWeightingMap) {
+    public LanguageDetectorBuilder languagePriorities(Map<LdLocale, Double> langWeightingMap) {
         this.langWeightingMap = langWeightingMap;
         return this;
     }

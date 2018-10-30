@@ -17,8 +17,6 @@
 package com.optimaize.langdetect.ngram;
 
 import com.google.common.collect.ImmutableList;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -31,11 +29,8 @@ import java.util.*;
  */
 public class NgramExtractor {
 
-    @NotNull
     private final List<Integer> gramLengths;
-    @Nullable
     private final NgramFilter filter;
-    @Nullable
     private final Character textPadding;
 
     public static NgramExtractor gramLength(int gramLength) {
@@ -63,7 +58,7 @@ public class NgramExtractor {
         return new NgramExtractor(this.gramLengths, this.filter, textPadding);
     }
 
-    private NgramExtractor(@NotNull List<Integer> gramLengths, @Nullable NgramFilter filter, @Nullable Character textPadding) {
+    private NgramExtractor(List<Integer> gramLengths, NgramFilter filter, Character textPadding) {
         if (gramLengths.isEmpty()) throw new IllegalArgumentException();
         this.gramLengths = ImmutableList.copyOf(gramLengths);
         this.filter = filter;
@@ -82,8 +77,7 @@ public class NgramExtractor {
      * @param  text
      * @return The grams, empty if the input was empty or if none for that gramLength fits.
      */
-    @NotNull
-    public List<String> extractGrams(@NotNull CharSequence text) {
+    public List<String> extractGrams(CharSequence text) {
         text = applyPadding(text);
         int len = text.length();
 
@@ -119,8 +113,7 @@ public class NgramExtractor {
      *         The order is as the n-grams appeared first in the string.
      *
      */
-    @NotNull
-    public Map<String,Integer> extractCountedGrams(@NotNull CharSequence text) {
+    public Map<String,Integer> extractCountedGrams(CharSequence text) {
         text = applyPadding(text);
         int len = text.length();
 

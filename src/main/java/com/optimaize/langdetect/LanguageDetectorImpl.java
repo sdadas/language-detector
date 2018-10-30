@@ -20,8 +20,6 @@ import com.optimaize.langdetect.cybozu.util.Util;
 import com.google.common.base.Optional;
 import com.optimaize.langdetect.i18n.LdLocale;
 import com.optimaize.langdetect.ngram.NgramExtractor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,13 +78,11 @@ public final class LanguageDetectorImpl implements LanguageDetector {
         }
     };
 
-    @NotNull
     private final NgramFrequencyData ngramFrequencyData;
 
     /**
      * User-defined language priorities, in the same order as {@code langlist}.
      */
-    @Nullable
     private final double[] priorMap;
 
     private final double alpha;
@@ -104,13 +100,13 @@ public final class LanguageDetectorImpl implements LanguageDetector {
     /**
      * Use the {@link LanguageDetectorBuilder}.
      */
-    LanguageDetectorImpl(@NotNull NgramFrequencyData ngramFrequencyData,
+    LanguageDetectorImpl( NgramFrequencyData ngramFrequencyData,
                          double alpha, Optional<Long> seed, int shortTextAlgorithm,
                          double prefixFactor, double suffixFactor,
                          double probabilityThreshold,
                          double minimalConfidence,
-                         @Nullable Map<LdLocale, Double> langWeightingMap,
-                         @NotNull NgramExtractor ngramExtractor) {
+                          Map<LdLocale, Double> langWeightingMap,
+                          NgramExtractor ngramExtractor) {
         if (alpha<0d || alpha >1d) throw new IllegalArgumentException("alpha must be between 0 and 1, but was: "+alpha);
         if (prefixFactor <0d || prefixFactor >10d) throw new IllegalArgumentException("prefixFactor must be between 0 and 10, but was: "+prefixFactor);
         if (suffixFactor <0d || suffixFactor >10d) throw new IllegalArgumentException("suffixFactor must be between 0 and 10, but was: "+suffixFactor);
@@ -160,7 +156,6 @@ public final class LanguageDetectorImpl implements LanguageDetector {
     /**
      * @return null if there are no "features" in the text (just noise).
      */
-    @Nullable
     private double[] detectBlock(CharSequence text) {
         if (text.length() <= shortTextAlgorithm) {
             Map<String, Integer> ngrams = ngramExtractor.extractCountedGrams(text);
@@ -235,7 +230,7 @@ public final class LanguageDetectorImpl implements LanguageDetector {
      * update language probabilities with N-gram string(N=1,2,3)
      * @param count 1-n: how often the gram occurred.
      */
-    private boolean updateLangProb(@NotNull double[] prob, @NotNull String ngram, int count, double alpha) {
+    private boolean updateLangProb( double[] prob, String ngram, int count, double alpha) {
         double[] langProbMap = ngramFrequencyData.getProbabilities(ngram);
         if (langProbMap==null) {
             return false;
@@ -263,7 +258,6 @@ public final class LanguageDetectorImpl implements LanguageDetector {
      * Returns the detected languages sorted by probabilities descending.
      * Languages with less probability than PROB_THRESHOLD are ignored.
      */
-    @NotNull
     private List<DetectedLanguage> sortProbability(double[] prob) {
         List<DetectedLanguage> list = new ArrayList<>();
         //step 1: add all that have reached a minimal probability:

@@ -29,8 +29,6 @@ import com.optimaize.langdetect.profiles.LanguageProfileReader;
 import com.optimaize.langdetect.text.CommonTextObjectFactories;
 import com.optimaize.langdetect.text.TextObject;
 import com.optimaize.langdetect.text.TextObjectFactory;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.util.*;
@@ -102,8 +100,7 @@ public class CommandLineInterface {
         values.put(key, value);
     }
 
-    @NotNull
-    private String requireParamString(@NotNull String key) {
+    private String requireParamString(String key) {
         String s = values.get(key);
         if (s==null || s.isEmpty()) {
             throw new RuntimeException("Missing command line param: "+key);
@@ -128,7 +125,6 @@ public class CommandLineInterface {
 
     /**
      */
-    @Nullable
     private Long getParamLongOrNull(String key) {
         String value = values.get(key);
         if (value == null || value.isEmpty()) {

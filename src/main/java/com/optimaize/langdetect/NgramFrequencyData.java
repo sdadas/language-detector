@@ -18,8 +18,6 @@ package com.optimaize.langdetect;
 
 import com.optimaize.langdetect.i18n.LdLocale;
 import com.optimaize.langdetect.profiles.LanguageProfile;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -39,7 +37,6 @@ public final class NgramFrequencyData {
      * Key   = ngram
      * Value = array with probabilities per loaded language, in the same order as {@code langlist}.
      */
-    @NotNull
     private final Map<String, double[]> wordLangProbMap;
 
     /**
@@ -47,7 +44,6 @@ public final class NgramFrequencyData {
      * Example: if wordLangProbMap has an entry for the n-gram "foo" then for each locale in this langlist here
      * it has a value there. Languages that don't know the n-gram have the value 0d.
      */
-    @NotNull
     private final List<LdLocale> langlist;
 
 
@@ -56,8 +52,7 @@ public final class NgramFrequencyData {
      * @throws java.lang.IllegalArgumentException if languageProfiles or gramLengths is empty, or if one of the
      *         languageProfiles does not have the grams of the required sizes.
      */
-    @NotNull
-    public static NgramFrequencyData create(@NotNull Collection<LanguageProfile> languageProfiles, @NotNull Collection<Integer> gramLengths) throws IllegalArgumentException {
+    public static NgramFrequencyData create( Collection<LanguageProfile> languageProfiles,  Collection<Integer> gramLengths) throws IllegalArgumentException {
         if (languageProfiles.isEmpty()) throw new IllegalArgumentException("No languageProfiles provided!");
         if (gramLengths.isEmpty()) throw new IllegalArgumentException("No gramLengths provided!");
 
@@ -90,19 +85,17 @@ public final class NgramFrequencyData {
         return new NgramFrequencyData(wordLangProbMap, langlist);
     }
 
-    private NgramFrequencyData(@NotNull Map<String, double[]> wordLangProbMap,
-                               @NotNull List<LdLocale> langlist) {
+    private NgramFrequencyData( Map<String, double[]> wordLangProbMap,
+                                List<LdLocale> langlist) {
         //not making immutable copies because I create them here (optimization).
         this.wordLangProbMap = Collections.unmodifiableMap(wordLangProbMap);
         this.langlist = Collections.unmodifiableList(langlist);
     }
 
 
-    @NotNull
     public List<LdLocale> getLanguageList() {
         return langlist;
     }
-    @NotNull
     public LdLocale getLanguage(int pos) {
         return langlist.get(pos);
     }
@@ -114,7 +107,6 @@ public final class NgramFrequencyData {
      *         The array is in the order of the {@link #getLanguageList()} language list, and has exactly that size.
      *         impl note: this way the caller can handle it more efficient than returning an empty array.
      */
-    @Nullable
     public double[] getProbabilities(String ngram) {
         return wordLangProbMap.get(ngram);
     }

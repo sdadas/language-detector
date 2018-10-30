@@ -20,7 +20,6 @@ import com.optimaize.langdetect.i18n.LdLocale;
 import com.optimaize.langdetect.ngram.NgramExtractor;
 import com.optimaize.langdetect.ngram.NgramExtractors;
 import com.optimaize.langdetect.ngram.OldNgramExtractor;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Formatter;
 import java.util.List;
@@ -111,8 +110,8 @@ public class Util {
 
     /**
      */
-    public static double[] makeInternalPrioMap(@NotNull Map<LdLocale, Double> langWeightingMap,
-                                                @NotNull List<LdLocale> langlist) {
+    public static double[] makeInternalPrioMap(Map<LdLocale, Double> langWeightingMap,
+                                               List<LdLocale> langlist) {
         assert !langWeightingMap.isEmpty();
         double[] priorMap = new double[langlist.size()];
         double sump = 0;

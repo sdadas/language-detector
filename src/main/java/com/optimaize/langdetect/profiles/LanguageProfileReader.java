@@ -18,7 +18,6 @@ package com.optimaize.langdetect.profiles;
 
 import com.optimaize.langdetect.frma.LangProfileReader;
 import com.optimaize.langdetect.i18n.LdLocale;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -94,8 +93,7 @@ public class LanguageProfileReader {
         return read(LanguageProfileReader.class.getClassLoader(), PROFILES_DIR, profileFileNames);
     }
 
-    @NotNull
-    public LanguageProfile readBuiltIn(@NotNull LdLocale locale) throws IOException {
+    public LanguageProfile readBuiltIn(LdLocale locale) throws IOException {
         String filename = makeProfileFileName(locale);
         String path = makePathForClassLoader(PROFILES_DIR, filename);
         try (InputStream in = LanguageProfileReader.class.getClassLoader().getResourceAsStream(path)) {
@@ -106,13 +104,11 @@ public class LanguageProfileReader {
         }
     }
 
-    @NotNull
-    private String makeProfileFileName(@NotNull LdLocale locale) {
+    private String makeProfileFileName(LdLocale locale) {
         return locale.toString();
     }
 
-    @NotNull
-    public List<LanguageProfile> readBuiltIn(@NotNull Collection<LdLocale> languages) throws IOException {
+    public List<LanguageProfile> readBuiltIn(Collection<LdLocale> languages) throws IOException {
         List<String> profileNames = new ArrayList<>();
         for (LdLocale locale : languages) {
             profileNames.add(makeProfileFileName(locale));

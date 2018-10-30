@@ -18,7 +18,6 @@ package com.optimaize.langdetect.i18n;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -65,14 +64,11 @@ import java.util.List;
  */
 public final class LdLocale {
 
-    @NotNull
     private final String language;
-    @NotNull
     private final Optional<String> script;
-    @NotNull
     private final Optional<String> region;
 
-    private LdLocale(@NotNull String language, @NotNull Optional<String> script, @NotNull Optional<String> region) {
+    private LdLocale(String language, Optional<String> script, Optional<String> region) {
         this.language = language;
         this.script = script;
         this.region = region;
@@ -82,8 +78,7 @@ public final class LdLocale {
      * @param string The output of the toString() method.
      * @return either a new or possibly a cached (immutable) instance.
      */
-    @NotNull
-    public static LdLocale fromString(@NotNull String string) {
+    public static LdLocale fromString(String string) {
         if (string==null || string.isEmpty()) throw new IllegalArgumentException("At least a language is required!");
 
         String language = null;
@@ -153,7 +148,6 @@ public final class LdLocale {
     /**
      * @return ISO 639-1 or 639-3 language code, eg "fr" or "gsw", see class header.
      */
-    @NotNull
     public String getLanguage() {
         return language;
     }
@@ -161,7 +155,6 @@ public final class LdLocale {
     /**
      * @return ISO 15924 script code, eg "Latn", see class header.
      */
-    @NotNull
     public Optional<String> getScript() {
         return script;
     }
@@ -169,7 +162,6 @@ public final class LdLocale {
     /**
      * @return ISO 3166-1 or UN M.49 code, eg "DE" or 150, see class header.
      */
-    @NotNull
     public Optional<String> getRegion() {
         return region;
     }

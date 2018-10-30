@@ -17,7 +17,6 @@
 package com.optimaize.langdetect;
 
 import com.optimaize.langdetect.i18n.LdLocale;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Holds information about a detected language: the locale (language) and the probability.
@@ -33,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
  */
 public class DetectedLanguage implements Comparable<DetectedLanguage> {
 
-    @NotNull
     private final LdLocale locale;
     private final double probability;
 
@@ -41,14 +39,13 @@ public class DetectedLanguage implements Comparable<DetectedLanguage> {
      * @param locale
      * @param probability 0-1
      */
-    public DetectedLanguage(@NotNull LdLocale locale, double probability) {
+    public DetectedLanguage(LdLocale locale, double probability) {
         if (probability<0d) throw new IllegalArgumentException("Probability must be >= 0 but was "+probability);
         if (probability>1d) throw new IllegalArgumentException("Probability must be <= 1 but was "+probability);
         this.locale = locale;
         this.probability = probability;
     }
 
-    @NotNull
     public LdLocale getLocale() {
         return locale;
     }

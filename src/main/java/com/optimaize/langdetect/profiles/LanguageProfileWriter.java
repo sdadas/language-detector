@@ -16,8 +16,6 @@
 
 package com.optimaize.langdetect.profiles;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -37,7 +35,7 @@ public class LanguageProfileWriter {
      *
      * @throws java.io.IOException
      */
-    public void write(@NotNull LanguageProfile languageProfile, @NotNull OutputStream outputStream) throws IOException {
+    public void write(LanguageProfile languageProfile, OutputStream outputStream) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, Charset.forName("utf-8")))) {
             writer.write("{\"freq\":{");
             boolean first = true;
@@ -75,7 +73,7 @@ public class LanguageProfileWriter {
      * @param fullPath Must be an existing writable directory path.
      * @throws java.io.IOException if such a file name exists already.
      */
-    public void writeToDirectory(@NotNull LanguageProfile languageProfile, @NotNull File fullPath) throws IOException {
+    public void writeToDirectory(LanguageProfile languageProfile, File fullPath) throws IOException {
         if (!fullPath.exists()) {
             throw new IOException("Path does not exist: "+fullPath);
         }
