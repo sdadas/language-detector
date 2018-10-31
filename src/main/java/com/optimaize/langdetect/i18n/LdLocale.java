@@ -112,7 +112,7 @@ public final class LdLocale {
     }
 
     private static boolean looksLikeGeoCode3166_1(String string) {
-        return string.length()==2 && string.matches("[A-Z]{2}");
+        return string.length()==2 && string.matches("[A-Za-z]{2}");
     }
     private static boolean looksLikeGeoCodeNumeric(String string) {
         return string.length()==3 && string.matches("[0-9]{3}");
